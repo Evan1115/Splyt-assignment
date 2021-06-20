@@ -67,7 +67,6 @@ function getAppointmentTime(schedules, duration) {
     for (let i = 0; i < schedules.length; i++) {
         // let count = 0
         let arr = []
-
         resultArr[i] = []
         schedules[i].forEach((element, index) => {
             let timeDiff
@@ -79,15 +78,12 @@ function getAppointmentTime(schedules, duration) {
             if (index == 0) {
                 time1 = getMinutes("9:00")
                 time2 = getMinutes(element[0])
-
             }
-
 
             //last time checks 7pm
             if (index == schedules[i].length - 1) {
                 time1 = getMinutes(element[1])
                 time2 = getMinutes("19:00")
-
             }
 
             //normal condition
@@ -99,7 +95,6 @@ function getAppointmentTime(schedules, duration) {
 
             timeDiff = time2 - time1
             earliestMinute = time1
-
             //store time diff and starting time(minutes)
             resultArr[i].push([timeDiff, earliestMinute])
         });
@@ -130,14 +125,10 @@ function getAppointmentTime(schedules, duration) {
             } else {
                 return null //if one of them is undefined when the timetable length for each person is not same
             }
-
         }
 
         //check if all the time diff are larger than the duration given
         if (count === target) return findMax(resultArr, i)
-
-
-
     }
     return null //if cannot find a time to fit the duration
 }
@@ -152,7 +143,6 @@ function findMax(arr, location) {
             max = arr[index][location][1]
         }
     })
-
     return timeConvert(max)
 }
 
@@ -163,7 +153,6 @@ function timeConvert(n) {
     var rhours = Math.floor(hours);
     var minutes = (hours - rhours) * 60;
     var rminutes = Math.round(minutes);
-
     return rhours + ":" + rminutes
 }
 
@@ -174,3 +163,4 @@ function getMinutes(time) {
 }
 
 console.log("The Earliest Time is : " + getAppointmentTime(schedules, 60))
+
